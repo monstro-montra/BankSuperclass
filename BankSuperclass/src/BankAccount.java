@@ -1,14 +1,18 @@
 public class BankAccount{
-    private String firstName;
-    private String lastName;
-    private int accountID;
-    private double balance;
+    String firstName;
+    String lastName;
+    int accountID;
+    double balance;
 
-    public BankAccount(String firstName, String lastName, int accountID, double balance){
+    public BankAccount(String firstName, String lastName, int accountID, double balance){ //parameterized BankAccount object
         firstName = this.firstName;
         lastName = this.lastName;
         accountID = this.accountID;
         balance = this.balance;
+    }
+
+    public BankAccount(){ //overloading BankAccount to allow for a no args version of this object
+
     }
 
     public double deposit(double deposit){
