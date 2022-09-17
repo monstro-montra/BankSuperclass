@@ -15,12 +15,12 @@ public class BankAccount{
 
     }
 
-    public double deposit(double deposit){
+    public double deposit(double deposit){ //method to deposit money
         balance = balance + deposit;
         return balance;
     }
 
-    public double withdraw(double withdraw){
+    public double withdraw(double withdraw){ //method to withdraw money
         balance = balance - withdraw;
         return balance;
     }
@@ -57,12 +57,12 @@ public class BankAccount{
         this.balance = balance;
     }
 
-    public void accountSummary(){
+    public void accountSummary(){ //account summary info. probably wont be used in main for this assignment
         System.out.println("Account Information \n"
                             + "First Name: " + getFirstName() + "\n"
                             + "Last Name: " + getLastName() + "\n"
                             + "Account ID: " + getAccountID() + "\n"
-                            + "Balance: " + getBalance() + "\n");
+                            + "Balance: " + getBalance());
 
     }
 
