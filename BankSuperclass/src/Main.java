@@ -4,12 +4,12 @@ import java.util.InputMismatchException;
 import java.util.Random;
 
 public class Main {
-    static CheckingAccount c = new CheckingAccount();
-    static Scanner in = new Scanner(System.in);
+    static CheckingAccount c = new CheckingAccount(); //create a new CheckingAccount object
+    static Scanner in = new Scanner(System.in); //create a new Scanner object
     public static void main(String[] args){
 
-        accountSetup();
-        menu(0);
+        accountSetup(); //run accountSetup static method
+        menu(0); //run the menu with a starting menuChoice of 0
         
 
 
@@ -27,24 +27,24 @@ public class Main {
 
         
         while(true){
-            System.out.print("Set your first name: ");
+            System.out.print("Set your first name: "); //ask user toset first name
             try{
-                if(in.hasNext("[A-Za-z]*")){
-                    c.setFirstName(in.next());
+                if(in.hasNext("[A-Za-z]*")){ //if the next input is alphabetical
+                    c.setFirstName(in.next()); //set firstName to user input
                 break; //break out of this loop if the user input is alphabetical.
                 } else {
                     throw new InputMismatchException("Not a name!");
                 }
-            } catch(InputMismatchException e){
+            } catch(InputMismatchException e){ //catch the InputMismatchException that was thrown before
                 mismatch(e);
             }
         }
         
         while(true){
-            System.out.print("Set your last name: ");
+            System.out.print("Set your last name: "); // ask user to set the last name
             try{
-                if(in.hasNext("[A-Za-z]*")){
-                    c.setLastName(in.next());
+                if(in.hasNext("[A-Za-z]*")){ //if the next input is alphabetical
+                    c.setLastName(in.next()); //set lastName to user input
                 break; //break out of this loop if the user input is alphabetical.
                 } else {
                     throw new InputMismatchException("Not a name!");
@@ -54,10 +54,10 @@ public class Main {
             }
         }
         
-        c.setAccountID(randomID);
-        System.out.println("Your account ID is: " + c.getAccountID());
-        c.setBalance(1000);
-        System.out.println("Your outstanding balance is " + c.getBalance());
+        c.setAccountID(randomID); //us setter to set the accountID
+        System.out.println("Your account ID is: " + c.getAccountID()); //print account ID
+        c.setBalance(1000); //set the starting balance to 1000
+        System.out.println("Your outstanding balance is " + c.getBalance()); //print the outstanding balance
     }
 
 
@@ -71,22 +71,22 @@ public class Main {
     public static int menu(int menuChoice){
         do {
             System.out.println(); // create a space
-            printMenu(); // call printmenu method
+            printMenu(); // call static printmenu method
             try {
-                if (in.hasNextInt()){
-                    menuChoice = in.nextInt();
-                    switch(menuChoice){
-                        case 1:   //deposit 
-                            System.out.println("How much would you like to deposit?");
-                            double depositAmount = in.nextDouble();
-                            c.deposit(depositAmount);
+                if (in.hasNextInt()){ //if in has an int in next user input
+                    menuChoice = in.nextInt(); //set menuChoice = to user input
+                    switch(menuChoice){ //this switch will be used to have user select from menu
+                        case 1: //deposit
+                            System.out.println("How much would you like to deposit?"); //
+                            double depositAmount = in.nextDouble(); //get double from user
+                            c.deposit(depositAmount); //call deposit method from bankAccount to add depositAmount
                             System.out.println("You've deposited: " + depositAmount + "$.");
                             break;
             
                         case 2: //withdraw
                             System.out.println("How much would you like to withdraw?");
-                            double withdrawAmount = in.nextDouble();
-                            c.withdraw(withdrawAmount);
+                            double withdrawAmount = in.nextDouble(); //get double from user
+                            c.withdraw(withdrawAmount); //call withdraw method from bankAccount
                             if (withdrawAmount == 0){ //if nothing was withdrawn
                                 System.out.println("Nothing withdrawn!");
                             } else{
@@ -94,19 +94,19 @@ public class Main {
                             }
 
                             if(withdrawAmount > c.getBalance() && withdrawAmount != 0){// if withdrawAmount is more than current balance
-                                c.processWithdrawal();
+                                c.processWithdrawal(); //call processWithdrawal method from checkingAccount class
                                 c.setBalance(c.getBalance() - 30); //30 is the overdraft fee. set balance to get balance - 30
                             } 
                             break;
                             
                         case 3: //display account info
-                            c.displayAccount();
+                            c.displayAccount(); //call displayAccount method
                             System.out.println();
                             break;
 
                         case 4: //exit
                             System.out.println("Exiting...");
-                            System.exit(0);
+                            System.exit(0); //exit the program
                             break;
 
                         default: // any int input that's not 1 through 4 will go here.
